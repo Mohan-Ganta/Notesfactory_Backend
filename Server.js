@@ -1,12 +1,14 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const products = require('./Routes/productRoutes');
+const users = require('./Routes/userRoutes');
 require('dotenv').config();
 require('./db');
 const app = express();
 app.use(bodyParser.json());
 
 app.use('/products', products);
+app.use('/users', users);
 
 const PORT = 3000;
 
