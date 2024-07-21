@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const User = require('../Models/Registration');
 const Product = require('../Models/Product');
-
+const Cart = require("../Models/Cart")
 
 router.post('/register', async (req, res) => {
     try{
@@ -49,4 +49,17 @@ router.get('/getAllUsers', async (req, res) => {
     }
 });
 
+
+router.post("/addtocart/:id",(req,res)=>{
+    const {userId,products} = req.body
+    const cartItem = new Cart({userId,products})
+    cartItem.save()
+    .then(item=>res.send(item))
+    .catch(err=>res.send(err))
+})
+router.get("/getcartitems/:id",(req,res)=>{
+    cart.find({userid:req.params.id})
+    .then(items=>res.send(items))
+    .catch(err=>err.send(err))
+})
 module.exports = router

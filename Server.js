@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use('/products', products);
 app.use('/users', users);
 
-const PORT = 3000;
+const PORT = 5000;
 
 app.get("/test", (req, res) => {
     res.send("Hello World!");
