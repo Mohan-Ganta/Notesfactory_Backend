@@ -29,7 +29,6 @@ router.post('/register', async (req, res) => {
 //     }
 // });
 
-
 router.get('/getUserProducts/:id', async (req, res) => {
 
     try{
