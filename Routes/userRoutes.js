@@ -14,29 +14,6 @@ router.post('/register', async (req, res) => {
     }
 });
 
-<<<<<<< HEAD
-router.get("/loginuser/:email/:password",(req,res)=>{
-    User.findOne({email:req.params.email,password:req.params.password})
-    .then(user=>{
-        res.send(user)
-    })
-    .catch(err=>res.send("Invalid Credentials"))
-})
-router.post('/addItem/:id',async(req,res)=>{
-    try{
-        const user = await User.findById(req.params.id);
-    
-        const{category,name,description,cost,image,file} = req.body;
-        const newProduct = new Product({category,name,description,cost,image,file});
-        await newProduct.save();
-        user.Products.push(newProduct);
-        await user.save();
-        res.status(200).json(newProduct);
-    }catch(err){    
-        res.status(500).json(err);
-    }
-});
-=======
 // router.post('/addtocart/:id',async(req,res)=>{
 //     try{
 //         const user = await User.findById(req.params.id);
@@ -51,8 +28,6 @@ router.post('/addItem/:id',async(req,res)=>{
 //         res.status(500).json(err);
 //     }
 // });
-
->>>>>>> e11a2ab7e9a7b6345fe269a1fc218f3bf998ef5c
 
 router.get('/getUserProducts/:id', async (req, res) => {
 
@@ -76,9 +51,6 @@ router.get('/getAllUsers', async (req, res) => {
 });
 
 
-<<<<<<< HEAD
-
-=======
 // router.post("/addtocart/:id",(req,res)=>{
 //     Cart.find({userid:req.params.id})
 //     const {userid,Products} = req.body;
@@ -130,5 +102,4 @@ router.get("/getcartitems/:id",(req,res)=>{
     .then(items=>res.send(items))
     .catch(err=>err.send(err))
 })
->>>>>>> e11a2ab7e9a7b6345fe269a1fc218f3bf998ef5c
 module.exports = router
