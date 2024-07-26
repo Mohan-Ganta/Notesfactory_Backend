@@ -71,13 +71,13 @@ router.put('/updateProduct/:id', async (req, res) => {
 //     }
 // });
 
-router.post('/addProductList/:id', async (req, res) => {
+router.post('/addProductList', async (req, res) => {
     try {
         const userId = req.body.UserId;
         const {UserId, PaymentUTR, PaymentProof, Address } = req.body;
         const user = await User.findById(userId);
-        const products = await Product.find({ _id: { $in: user.Products } }); //$in for searching in array brooooo  dont forget it
-        const amount = products.reduce((total, product) => total + product.cost, 0);// reduce is the function of array i dont know why it works for adding 
+        const products = await Product.find({ _id: { $in: user.Products } });
+        const amount = products.reduce((total, product) => total + product.cost, 0);
         const newProductList = new ProductList({
             ProductIds: products.map(product => product._id),
             UserId,
