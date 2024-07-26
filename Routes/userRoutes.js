@@ -87,6 +87,22 @@ router.post("/addtocart/:id", async (req, res) => {
     }
 });
 
+router.delete("/removefromcart/:userId/:productId", async (req, res) => {
+
+    try{
+        const userCart = await Cart.findOne({ userId: req.params.userId });
+        userCart.Products = userCart.Products.filter(
+            (product) => product._id != req.params.productId
+        );
+        await userCart.save();
+        const updatedCart = await Cart.findOne({ userId: req.params.userId });
+        res.send(updatedCart);
+    }catch(err){
+        res.status(500).send(err);
+    }
+    
+});
+
 // router.post("/isApproved/removeFromCart/:id", async (req, res) => {
 //     const { products } = req.body;
 
@@ -106,8 +122,8 @@ router.post("/addtocart/:id", async (req, res) => {
 
 
 router.get("/getcartitems/:id",(req,res)=>{
-    Cart.find({userid:req.params.id})
-    .then(items=>res.send(items))
-    .catch(err=>err.send(err))
+    Cart.find({userId:req.params.id})
+    .then(items=>res.send(items[0].Products))
+    .catch(err=>res.send(err))
 })
 module.exports = router
