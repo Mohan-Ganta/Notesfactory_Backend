@@ -14,6 +14,14 @@ router.post('/register', async (req, res) => {
     }
 });
 
+router.get("/loginuser/:email/:pwd",(req,res)=>{
+    const {email,pwd} = req.params
+    User.find({Email:email,Password:pwd})
+    .then((user)=>res.send(user[0]))
+    .catch(err=>res.send(err))
+})
+
+
 // router.post('/addtocart/:id',async(req,res)=>{
 //     try{
 //         const user = await User.findById(req.params.id);
