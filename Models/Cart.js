@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const cartSchema = new mongoose.Schema({
-    userId : {type:Array},
-    products : {type:String}
+    userId : {type:String},
+    products : {type:Array}
 })
 const Cart = mongoose.model("cartitems",cartSchema)
 module.exports = Cart
