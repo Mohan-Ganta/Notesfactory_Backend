@@ -52,8 +52,7 @@ router.put('/updateProduct/:id', async (req, res) => {
         product.file = req.body.file;
         await product.save();
         res.status(200).json(product);
-        
-
+    
     }catch(err){
         res.status(500).json(err);
     }

@@ -21,7 +21,6 @@ router.get("/loginuser/:email/:pwd",(req,res)=>{
     .catch(err=>res.send(err))
 })
 
-
 // router.post('/addtocart/:id',async(req,res)=>{
 //     try{
 //         const user = await User.findById(req.params.id);
@@ -57,7 +56,6 @@ router.get('/getAllUsers', async (req, res) => {
         res.status(500).json(err);
     }
 });
-
 
 // router.post("/addtocart/:id",(req,res)=>{
 //     Cart.find({userid:req.params.id})
@@ -103,11 +101,10 @@ router.post("/addtocart/:id", async (req, res) => {
 //     }
 // });
 
-
-
 router.get("/getcartitems/:id",(req,res)=>{
-    Cart.find({userid:req.params.id})
-    .then(items=>res.send(items))
-    .catch(err=>err.send(err))
+    Cart.find({userId:req.params.id})
+    .then(items=>res.send(items[0].Products))
+    .catch(err=>res.send(err))
 })
+
 module.exports = router
