@@ -1,11 +1,7 @@
 const mongoose = require('mongoose')
-const Products = require('./Product');
-// const Registration = require('./Registration');
-
 const ProductListSchema = new mongoose.Schema({
-   ProductIds:{
-      type: Array,
-      required: true
+   Products:{
+      type:Array,
    },
    UserId:{
       type: String,
@@ -23,14 +19,10 @@ const ProductListSchema = new mongoose.Schema({
     type: String,
     required: true
    },
-   Address:{
-      type: String,
-      required: false,
-      default: null
-   },
+  
    isApproved:{
       type: Boolean,
       default: false
    }
 });
-module.exports = mongoose.model('ProductList',ProductListSchema)
+module.exports = mongoose.model('purchases',ProductListSchema)

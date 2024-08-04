@@ -58,8 +58,6 @@ router.put('/updateProduct/:id', async (req, res) => {
     }
 });
 
-
-
 // router.post('/addProductList/:id', async (req, res) => {
 //     try{
 //         const product = await Product.find({ _id: id });
